@@ -94,7 +94,6 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.1)
     minitest (5.18.0)
     net-imap (0.3.4)
       date
@@ -106,10 +105,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.8)
-    nokogiri (1.14.2)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.14.2-arm64-darwin)
+    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -146,9 +142,7 @@ GEM
     rake (13.0.6)
     reline (0.3.3)
       io-console (~> 0.5)
-    sqlite3 (1.6.2)
-      mini_portile2 (~> 2.8.0)
-    sqlite3 (1.6.2-arm64-darwin)
+    sqlite3 (1.6.2-x86_64-linux)
     thor (1.2.1)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -159,14 +153,13 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
-  arm64-darwin-22
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   debug
   faker
   puma (~> 5.0)
-  rails (~> 7.0.4, >= 7.0.4.3)
+  rails (>= 7.0.4.3)
   sqlite3 (~> 1.4)
   tzinfo-data
 
@@ -174,4 +167,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.4.6
+   2.4.8
