@@ -69,3 +69,4 @@ category = Category.create(name: Faker::Food.dish, origin: Faker::Food.ethnic_ca
         spice_levels: rand(1..5)
     )
 end
+
