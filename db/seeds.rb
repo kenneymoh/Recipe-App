@@ -21,7 +21,7 @@ end
 #creating twenty instances of the ingredients
 100.times do
     ingredient = Ingredient.create(
-        name: Faker::Food.ingredient
+        name: Faker::Food.ingredient,
         quantity: Faker::Food.measurement,
         description: Faker::Food.description,
         price: rand(1..99)
