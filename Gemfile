@@ -28,5 +28,6 @@ group :development do
   # gem "spring"
 end
 
-gem 'faker'
+
+gem "faker"
 
