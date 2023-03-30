@@ -8,7 +8,7 @@
     )
 end
 
-#creating twenty instances of the recipe
+#creating 21 instances of the recipe
 
     recipe = Recipe.create(name: Faker::Food.dish, description: Faker::Food.description, image: "https://unsplash.com/photos/kcA-c3f_3FE",author: Faker::Name.first_name, cooking_time: rand(3..60))
     recipe = Recipe.create(name: Faker::Food.dish, description: Faker::Food.description, image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",author: Faker::Name.first_name, cooking_time: rand(3..60))
@@ -30,6 +30,7 @@ end
     recipe = Recipe.create(name: Faker::Food.dish, description: Faker::Food.description, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZi46hUxiQ8DDJ2ft29nMYZ1CQ8r-BVoMAMg&usqp=CAU",author: Faker::Name.first_name, cooking_time: rand(3..60))
     recipe = Recipe.create(name: Faker::Food.dish, description: Faker::Food.description, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ0RFc1GwUFSdh7aIgZZVvXO3svPVC4dAwJA&usqp=CAU",author: Faker::Name.first_name, cooking_time: rand(3..60))
     recipe = Recipe.create(name: Faker::Food.dish, description: Faker::Food.description, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJaR--zjn5PocsTbcKHzrXHZHHd-C4ZzfP2Q&usqp=CAU",author: Faker::Name.first_name, cooking_time: rand(3..60))
+    recipe = Recipe.create(name: Faker::Food.dish, description: Faker::Food.description, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80",author: Faker::Name.first_name, cooking_time: rand(3..60))
 
 
 #creating twenty instances of the ingredients
@@ -69,4 +70,3 @@ category = Category.create(name: Faker::Food.dish, origin: Faker::Food.ethnic_ca
         spice_levels: rand(1..5)
     )
 end
-
