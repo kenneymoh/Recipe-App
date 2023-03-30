@@ -5,10 +5,5 @@ class User < ApplicationRecord
     validates :password, presence: true, length: {minimum: 6}
     validates :email, presence: true
     validates :gender, presence: true
-    has_many :recipes
-
-    validates :username, presence: true
-    validates :password, presence: true, length: {minimum: 6}
-    validates :email, presence: true
-    validates :gender, presence: true
+    
 end
