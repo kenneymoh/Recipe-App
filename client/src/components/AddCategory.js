@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-
 const AddCategory = () => {
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("/categories")
       .then(response => response.json())
       .then(data => {
         const categories = data.map(item => item.title);
@@ -16,9 +14,8 @@ const AddCategory = () => {
         console.log(error);
       });
   }, []);
-
   const handleAddCategory = () => {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("/categories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,10 +32,9 @@ const AddCategory = () => {
         console.log(error);
       });
   };
-
   const handleDeleteCategory = (index) => {
     const categoryId = categories[index].id;
-    fetch(`https://jsonplaceholder.typicode.com/posts/${categoryId}`, {
+    fetch(`/categories/${categoryId}`, {
       method: "DELETE"
     })
       .then(() => {
@@ -51,30 +47,58 @@ const AddCategory = () => {
         console.log(error);
       });
   };
-
   const handleUpdateCategory = () => {
-    // code for updating category
+    const categoryId = categories[selectedCategory].id;
+    fetch(`/categories/${categoryId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ title: newCategory })
+    })
+      .then(() => {
+        const updatedCategories = [...categories];
+        updatedCategories[selectedCategory] = newCategory;
+        setCategories(updatedCategories);
+        setSelectedCategory(null);
+        setNewCategory("");
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
-
   return (
     <div>
-      <h2>Categories</h2>
+      <h2>Recipe Categories</h2>
       <ul>
         {categories.map((category, index) => (
           <li key={index}>
-            <span onClick={() => setSelectedCategory(index)}>{category}</span>
+            {category}
             <button onClick={() => handleDeleteCategory(index)}>Delete</button>
+            <button onClick={() => setSelectedCategory(index)}>Edit</button>
           </li>
         ))}
       </ul>
-      <input
-        type="text"
-        value={newCategory}
-        onChange={e => setNewCategory(e.target.value)}
-      />
-      <button onClick={handleAddCategory}>Add Category</button>
+      {selectedCategory !== null ? (
+        <div>
+          <input
+            type="text"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+          />
+          <button onClick={handleUpdateCategory}>Update Category</button>
+        </div>
+      ) : (
+        <div>
+          <input
+            type="text"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+          />
+          <button onClick={handleAddCategory}>Add Category</button>
+        </div>
+      )}
     </div>
   );
 };
-
 export default AddCategory;
