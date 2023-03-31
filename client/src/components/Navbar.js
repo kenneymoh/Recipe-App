@@ -13,7 +13,7 @@ function Navbar() {
         <NavLink to = '/update'>Update</NavLink>
         <NavLink to = '/addcategory'>Add Category</NavLink>
         <NavLink to = '/saved'>Saved</NavLink>
-        
+        <NavLink to = '/userprofile'>User Profile</NavLink>
 
     </div>
   )
