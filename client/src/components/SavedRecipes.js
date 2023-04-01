@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function SavedRecipes() {
   const [savedRecipes, setSavedRecipes] = useState([]);
 
   useEffect(() => {
     // Make a GET request to retrieve the user's saved recipes
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => setSavedRecipes(data));
+    axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
+      setSavedRecipes(response.data);
+    });
   }, []);
 
   return (

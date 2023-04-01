@@ -1,104 +1,113 @@
-import React, { useState, useEffect } from "react";
-const AddCategory = () => {
-  const [categories, setCategories] = useState([]);
-  const [newCategory, setNewCategory] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  useEffect(() => {
-    fetch("/categories")
-      .then(response => response.json())
-      .then(data => {
-        const categories = data.map(item => item.title);
-        setCategories(categories);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
-  const handleAddCategory = () => {
-    fetch("/categories", {
-      method: "POST",
+import React, { useState } from 'react';
+
+const AddRecipe = () => {
+  const [recipeName, setRecipeName] = useState('');
+  const [recipeImage, setRecipeImage] = useState('');
+  const [recipeOrigin, setRecipeOrigin] = useState('');
+  const [recipeDescription, setRecipeDescription] = useState('');
+  const [recipes, setRecipes] = useState([]);
+
+  const handleRecipeNameChange = (e) => {
+    setRecipeName(e.target.value);
+  };
+
+  const handleRecipeImageChange = (e) => {
+    setRecipeImage(e.target.value);
+  };
+
+  const handleRecipeOriginChange = (e) => {
+    setRecipeOrigin(e.target.value);
+  };
+
+  const handleRecipeDescriptionChange = (e) => {
+    setRecipeDescription(e.target.value);
+  };
+
+  const handleAddRecipe = () => {
+    const newRecipe = {
+      name: recipeName,
+      image: recipeImage,
+      origin: recipeOrigin,
+      description: recipeDescription,
+    };
+
+    fetch('/api/category', {
+      method: 'POST',
+      body: JSON.stringify(newRecipe),
       headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ title: newCategory })
+        'Content-Type': 'application/json'
+      }
     })
-      .then(response => response.json())
-      .then(data => {
-        const updatedCategories = [...categories, data.title];
-        setCategories(updatedCategories);
-        setNewCategory("");
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    .then(response => response.json())
+    .then(data => {
+      setRecipes([...recipes, data]);
+      setRecipeName('');
+      setRecipeImage('');
+      setRecipeOrigin('');
+      setRecipeDescription('');
+    });
   };
-  const handleDeleteCategory = (index) => {
-    const categoryId = categories[index].id;
-    fetch(`/categories/${categoryId}`, {
-      method: "DELETE"
+
+  const handleDeleteRecipe = (recipeId) => {
+    fetch(`/api/category/${recipeId}`, {
+      method: 'DELETE'
     })
-      .then(() => {
-        const updatedCategories = [...categories];
-        updatedCategories.splice(index, 1);
-        setCategories(updatedCategories);
-        setSelectedCategory(null);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    .then(() => {
+      const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
+      setRecipes(updatedRecipes);
+    });
   };
-  const handleUpdateCategory = () => {
-    const categoryId = categories[selectedCategory].id;
-    fetch(`/categories/${categoryId}`, {
-      method: "PUT",
+
+  const handleEditRecipe = (recipeId, updatedRecipe) => {
+    fetch(`/api/category/${recipeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(updatedRecipe),
       headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ title: newCategory })
+        'Content-Type': 'application/json'
+      }
     })
-      .then(() => {
-        const updatedCategories = [...categories];
-        updatedCategories[selectedCategory] = newCategory;
-        setCategories(updatedCategories);
-        setSelectedCategory(null);
-        setNewCategory("");
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    .then(response => response.json())
+    .then(data => {
+      const updatedRecipes = recipes.map((recipe) =>
+        recipe.id === data.id ? data : recipe
+      );
+      setRecipes(updatedRecipes);
+    });
   };
+
   return (
     <div>
-      <h2>Recipe Categories</h2>
-      <ul>
-        {categories.map((category, index) => (
-          <li key={index}>
-            {category}
-            <button onClick={() => handleDeleteCategory(index)}>Delete</button>
-            <button onClick={() => setSelectedCategory(index)}>Edit</button>
-          </li>
-        ))}
-      </ul>
-      {selectedCategory !== null ? (
-        <div>
-          <input
-            type="text"
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-          />
-          <button onClick={handleUpdateCategory}>Update Category</button>
+      <h2>Add Category</h2>
+      <div>
+        <label>Name:</label>
+        <input type="text" value={recipeName} onChange={handleRecipeNameChange} />
+      </div>
+      <div>
+        <label>Image:</label>
+        <input type="text" value={recipeImage} onChange={handleRecipeImageChange} />
+      </div>
+      <div>
+        <label>Origin:</label>
+        <input type="text" value={recipeOrigin} onChange={handleRecipeOriginChange} />
+      </div>
+      <div>
+        <label>Description:</label>
+        <textarea value={recipeDescription} onChange={handleRecipeDescriptionChange} />
+      </div>
+      <button onClick={handleAddRecipe}>Add category</button>
+      <h2>categories</h2>
+      {recipes.map((recipe) => (
+        <div key={recipe.id}>
+          <h3>{recipe.name}</h3>
+          <img src={recipe.image} alt={recipe.name} />
+          <p>{recipe.origin}</p>
+          <p>{recipe.description}</p>
+          <button onClick={() => handleDeleteRecipe(recipe.id)}>Delete</button>
+          <button onClick={() => handleEditRecipe(recipe.id, recipe)}>Edit</button>
         </div>
-      ) : (
-        <div>
-          <input
-            type="text"
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-          />
-          <button onClick={handleAddCategory}>Add Category</button>
-        </div>
-      )}
+      ))}
     </div>
   );
 };
-export default AddCategory;
+
+export default AddRecipe;

@@ -9,6 +9,10 @@ import Category from "./components/Category";
 import UpdateRecipe from "./components/UpdateRecipe";
 import AddCategory from "./components/AddCategory";
 import SavedRecipes from "./components/SavedRecipes";
+import RecipeDetails from "./components/RecipeDetails";
+import Login from "./components/Login";
+import Search from "./components/Search";
+import Landing from "./components/Landing";
 
 function App() {
   return (
@@ -59,6 +63,26 @@ function App() {
         exact
         path = '/saved'
         element = {<SavedRecipes />}
+        />
+        <Route
+        exact
+        path = '/recipedetails'
+        element = {<RecipeDetails />}
+        />
+        <Route
+        exact
+        path = '/login'
+        element = {<Login />}
+        />
+        <Route
+        exact
+        path = '/search'
+        element = {<Search />}
+        />
+        <Route
+        exact
+        path = '/landing'
+        element = {<Landing />}
         />
       </Routes>
     </div>
