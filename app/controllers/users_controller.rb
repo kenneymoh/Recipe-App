@@ -8,13 +8,21 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1
+  # def show
+  #   @users = User.find_by(id: params[:id])
+  #   if @users
+  #   render json: @users, status: :ok
+  #   else
+  #     render json: {error: "User not found"}, status: :not_found
+  #   end
+  # end
   def show
-    @users = User.find_by(id: params[:id])
-    if @users
-    render json: @users, status: :ok
-    else
-      render json: {error: "User not found"}, status: :not_found
-    end
+    @users = User.find_by(
+      id: params[:id],
+      email: params[:email],
+      password: params[:password]
+      )
+      render json: @users, status: :ok
   end
 
   # POST /users
