@@ -75,7 +75,6 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
     </div>
   );
 };
-
 export default AddRecipe;
 
 

@@ -1,4 +1,9 @@
-/* <div>
+import React from "react";
+import { Link } from "react-router-dom";
+function Home() {
+  return (
+    <div className="w-full relative">
+      <div>
         <video autoPlay muted loop className="w-full h-full">
           <source
             src="https://database-six.vercel.app/video/2.mp4"
@@ -50,9 +55,8 @@
             />
           </video>
         </div>
-      </div> */
-
-
-      <div className='m-0 p-0 font-sans'>
-      <div className='w-full h-screen'>
-        <div className='main w-full h-full object-cover'>
+      </div>
+    </div>
+  );
+}
+export default Home;
