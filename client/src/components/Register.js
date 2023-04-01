@@ -1,55 +1,83 @@
-import React from 'react'
-import {useForm} from "react-hook-form" 
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 function Register() {
-    const {register, handleSubmit, formState:{errors}, watch,   reset} =useForm() 
-    const password = watch("password")
-
-    function postData(data){
-        fetch("https://jsonplaceholder.typicode.com/posts", {
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify(data)
-        })
-        console.log(data)
-        reset()
+    const navigate = useNavigate()
+  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
+  const handleNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
     }
+    try {
+      const response = await fetch('/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password
+        })
+      });
+      const data = await response.json();
+      console.log(data);
+      // clear form fields and error message
+      setUserName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setError('');
+    } catch (err) {
+      console.error(err);
+      setError('Error registering user');
+    }
+    navigate('/login')
+  };
   return (
-    <div>
-        <form onSubmit={handleSubmit(postData)}>
-            <div className='username'>
-                <input type="text" id = "name" placeholder='Your Username' name= "username" {...register("name", {
-                    required:true,
-                    maxLength: 10,
-                })}/><br/>
-            </div>
-            {errors.name && (<p>Add proper name</p>)}
-            <div className='email'>
-                <input type="email" id = "email" placeholder='Your Email' name= "email" {...register("email", {
-                    required:true,
-                    pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                })}/><br/>
-                {errors.email && (<p>Add a valid email</p>)}
-            </div>
-            <div className='password-confirm'>
-                <input type="password" id = "password" placeholder='Your Password' name= "password" {...register("password", {
-                    required:true,
-                })}/>
-            </div>
-            {errors.password && (<p>Add a valid password</p>)}
-            <div className='password'>
-                <input type="password" id = "password-confirm" placeholder='Confirm your password' name= "password-confirm" {...register("passwordconfirm", {
-                    validate: value =>
-                    value === password || "THe passwords do not match"
-                })}/><br />
-                {errors.passwordconfirm && (<p>Passwords do not match</p>)}
-            </div>
-            <button type='submit' id="submitButton">Submit</button>
-        </form>
-    </div>
-  )
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="username">UserName:</label>
+        <input type="text" id="name" value={username} onChange={handleNameChange} required />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" value={email} onChange={handleEmailChange} required />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" value={password} onChange={handlePasswordChange} required />
+      </div>
+      <div>
+        <label htmlFor="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" value={confirmPassword} onChange={handleConfirmPasswordChange} required />
+      </div>
+      <div>
+        <button type="submit">Register</button>
+      </div>
+      {error && (
+        <div>
+          <p>{error}</p>
+        </div>
+      )}
+    </form>
+  );
 }
-
-export default Register
+export default Register;
