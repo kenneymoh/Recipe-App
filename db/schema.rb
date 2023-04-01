@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_051833) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2023_03_28_085722) do
->>>>>>> db80fa1 (Added seed file)
+ActiveRecord::Schema[7.0].define(version: 2023_04_01_065903) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.string "origin"
@@ -46,12 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_085722) do
     t.string "name"
     t.string "description"
     t.string "image"
-<<<<<<< HEAD
     t.string "cooking_time"
-    t.string "author"
-=======
-    t.integer "cooking_time"
->>>>>>> db80fa1 (Added seed file)
+    t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "saved_recipes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_085722) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
