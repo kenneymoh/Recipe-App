@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 function Landing() {
   const navigate = useNavigate()
-  // const [name, setName] = useState('hhvv')
+  const [name, setName] = useState('hhvv')
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       navigate('/login')
