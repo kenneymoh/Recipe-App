@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.0"
+ruby "2.7.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails",  ">= 7.0.4.3"
@@ -30,7 +30,5 @@ group :development do
 end
 
 gem 'faker'
-
-
-
-gem "faker"
+gem "bcrypt", "~> 3.1.7"
+gem 'active_model_serializers', '~> 0.10.2'
