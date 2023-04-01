@@ -4,7 +4,7 @@ const AddCategory = () => {
   const [newCategory, setNewCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("/categories")
       .then(response => response.json())
       .then(data => {
         const categories = data.map(item => item.title);
@@ -15,7 +15,7 @@ const AddCategory = () => {
       });
   }, []);
   const handleAddCategory = () => {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
+    fetch("/categories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -34,7 +34,7 @@ const AddCategory = () => {
   };
   const handleDeleteCategory = (index) => {
     const categoryId = categories[index].id;
-    fetch(`https://jsonplaceholder.typicode.com/posts/${categoryId}`, {
+    fetch(`/categories/${categoryId}`, {
       method: "DELETE"
     })
       .then(() => {
@@ -49,7 +49,7 @@ const AddCategory = () => {
   };
   const handleUpdateCategory = () => {
     const categoryId = categories[selectedCategory].id;
-    fetch(`https://jsonplaceholder.typicode.com/posts/${categoryId}`, {
+    fetch(`/categories/${categoryId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
