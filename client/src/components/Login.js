@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { link , useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 function Login ({setUser}) {
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
@@ -22,7 +22,7 @@ function Login ({setUser}) {
             setUser(result.data)
             alert('Success')
             localStorage.setItem('token', result.data.token)
-            navigate('/landing')
+            navigate('/recipe')
         })
         .catch(error => {
             alert('service error')

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 function Recipe({user}) {
+
   const [recipes, setRecipes] = useState([]);
   const [disabledButtons, setDisabledButtons] = useState([]);
   useEffect(() => {
@@ -38,20 +39,21 @@ function Recipe({user}) {
     .then(data => console.log(data))
   }
   return (
-    <div>
-      {recipes.map((recipe, index) => (
-        <div key={recipe.id}>
-          <h2>{recipe.name}</h2>
-          <p>{recipe.description}</p>
-          <img src={recipe.image} alt={recipe.name} />
-          <Link to = {`/recipedetails/${recipe.id}`}>more details</Link>
-          <button onClick={() => handleSaveRecipe(recipe.id)}>Save</button>
-{          user.id == recipe.user_id && 
-<>
-{/* <button>Update</button> */}
-<button onClick={() => handleDeleteRecipe(recipe.id, index)} disabled={disabledButtons[index]}>Delete</button>
-</>
-}        </div>
+    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        {recipes.map((recipe, index) => (
+          <div key={recipe.id}>
+            <h2>{recipe.name}</h2>
+            <p>{recipe.description}</p>
+            <img src={recipe.image} alt={recipe.name} />
+            <Link to = {`/recipedetails/${recipe.id}`}>more details</Link>
+            <button onClick={() => handleSaveRecipe(recipe.id)}>Save</button>
+  {          user.id === recipe.user_id &&
+  <>
+  <button>Update</button>
+  <button onClick={() => handleDeleteRecipe(recipe.id, index)} disabled={disabledButtons[index]}>Delete</button>
+  </>
+  }
+       </div>
       ))}
     </div>
   );
