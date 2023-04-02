@@ -21,11 +21,7 @@ function App() {
     <div className="App">
         <Navbar />
       <Routes>
-        <Route
-        exact
-        path = '/home'
-        element = {<Home />}
-        />
+        {/*   */}
         <Route
         exact
         path = '/register'
@@ -66,12 +62,12 @@ function App() {
         path = '/saved'
         element = {<SavedRecipes user = {user} />}
         />
-        <Route
+        {/* <Route
         exact
         path = '/recipedetails/:recipeId'
         element = {<RecipeDetails />}
-        />
-        <Route
+        /> */}
+        {/* <Route
         exact
         path = '/login'
         element = {<Login setUser= {setUser}/>}
@@ -81,11 +77,11 @@ function App() {
         path = '/search'
         element = {<Search />}
         />
-        <Route
-        exact
+        <Route */}
+        {/* exact
         path = '/landing'
         element = {<Landing />}
-        />
+        /> */}
       </Routes>
     </div>
   );
