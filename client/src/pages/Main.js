@@ -6,7 +6,7 @@ import Login from '../components/Login'
 import { Routes, Route} from 'react-router-dom'
 // import { NavLink } from 'react-router-dom'
 import Register from '../components/Register'
-// import Landing from '../components/Landing'
+import Landing from '../components/Landing'
 import AddRecipe from '../components/AddRecipe'
 
 function Main() {
@@ -33,6 +33,11 @@ function Main() {
         exact
         path = '/addcategory'
         element = {<AddRecipe />}
+        />
+        <Route
+        exact
+        path = '/landing'
+        element = {<Landing />}
         />
       </Routes>
       <Footer/>
