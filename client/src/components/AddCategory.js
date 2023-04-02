@@ -1,39 +1,22 @@
-import React, { useState } from 'react';
-
-const AddRecipe = () => {
-  const [recipeName, setRecipeName] = useState('');
-  const [recipeImage, setRecipeImage] = useState('');
-  const [recipeOrigin, setRecipeOrigin] = useState('');
-  const [recipeDescription, setRecipeDescription] = useState('');
-  const [recipes, setRecipes] = useState([]);
-
-  const handleRecipeNameChange = (e) => {
-    setRecipeName(e.target.value);
-  };
-
-  const handleRecipeImageChange = (e) => {
-    setRecipeImage(e.target.value);
-  };
-
-  const handleRecipeOriginChange = (e) => {
-    setRecipeOrigin(e.target.value);
-  };
-
-  const handleRecipeDescriptionChange = (e) => {
-    setRecipeDescription(e.target.value);
-  };
-
-  const handleAddRecipe = () => {
-    const newRecipe = {
-      name: recipeName,
-      image: recipeImage,
-      origin: recipeOrigin,
-      description: recipeDescription,
-    };
-
-    fetch('/api/category', {
-      method: 'POST',
-      body: JSON.stringify(newRecipe),
+import React, { useState, useEffect } from "react";
+const AddCategory = () => {
+  const [categories, setCategories] = useState([]);
+  const [newCategory, setNewCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  useEffect(() => {
+    fetch("/categories")
+      .then(response => response.json())
+      .then(data => {
+        const categories = data.map(item => item.title);
+        setCategories(categories);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+  const handleAddCategory = () => {
+    fetch("/categories", {
+      method: "POST",
       headers: {
         'Content-Type': 'application/json'
       }
@@ -47,21 +30,20 @@ const AddRecipe = () => {
       setRecipeDescription('');
     });
   };
-
-  const handleDeleteRecipe = (recipeId) => {
-    fetch(`/api/category/${recipeId}`, {
-      method: 'DELETE'
+  const handleDeleteCategory = (index) => {
+    const categoryId = categories[index].id;
+    fetch(`/categories/${categoryId}`, {
+      method: "DELETE"
     })
     .then(() => {
       const updatedRecipes = recipes.filter((recipe) => recipe.id !== recipeId);
       setRecipes(updatedRecipes);
     });
   };
-
-  const handleEditRecipe = (recipeId, updatedRecipe) => {
-    fetch(`/api/category/${recipeId}`, {
-      method: 'PUT',
-      body: JSON.stringify(updatedRecipe),
+  const handleUpdateCategory = () => {
+    const categoryId = categories[selectedCategory].id;
+    fetch(`/categories/${categoryId}`, {
+      method: "PUT",
       headers: {
         'Content-Type': 'application/json'
       }

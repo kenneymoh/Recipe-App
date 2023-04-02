@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import UpdateRecipe from './UpdateRecipe';
 function RecipeDetails() {
-    const {recipeId} = useParams()
-    const [oneRecipe, setRecipe] = useState([])
-    useEffect(() => {
-        fetch(`/categories/${recipeId}`)
-        .then(response => response.json())
-        .then(data => setRecipe(data))
-    }, [])
-    
+  const { recipeId } = useParams();
+  const [oneRecipe, setRecipe] = useState(null);
+  useEffect(() => {
+    fetch(`/recipes/${recipeId}`)
+      .then(response => response.json())
+      .then(data => setRecipe(data))
+      .catch(error => console.error(error));
+  }, [recipeId]);
+  if (!oneRecipe) {
+    return <div>Loading...</div>;
+  }
+  const { name, image, cooking_time, description } = oneRecipe;
   return (
     <div>
-        {oneRecipe.map((rec) => 
-            <div>
-                <h1>{rec.name}</h1>
-                <p>{rec.image}</p>
-                <p>{rec.cooking_time}</p>
-                <p>{rec.description}</p>
-            </div>
-        )}
+      <h1>{name}</h1>
+      <img src={image} />
+      <p>{cooking_time}</p>
+      <p>{description}</p>
+      <UpdateRecipe />
     </div>
-  )
+  );
 }
-
-export default RecipeDetails
+export default RecipeDetails;
