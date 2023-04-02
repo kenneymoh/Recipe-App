@@ -17,7 +17,74 @@ import Landing from "./components/Landing";
 function App() {
   return (
     <div className="App">
-
+        <Navbar />
+      <Routes>
+        <Route
+        exact
+        path = '/home'
+        element = {<Home />}
+        />
+        <Route
+        exact
+        path = '/register'
+        element = {<Register />}
+        />
+        <Route
+        exact
+        path = '/recipe'
+        element = {<Recipe />}
+        />
+        <Route
+        exact
+        path = '/addrecipe'
+        element = {<AddRecipe />}
+        />
+        <Route
+        exact
+        path = '/delete'
+        element = {<DeleteRecipe />}
+        />
+        <Route
+        exact
+        path = '/category'
+        element = {<Category />}
+        />
+        <Route
+        exact
+        path = '/update'
+        element = {<UpdateRecipe />}
+        />
+        <Route
+        exact
+        path = '/addcategory'
+        element = {<AddCategory />}
+        />
+        <Route
+        exact
+        path = '/saved'
+        element = {<SavedRecipes />}
+        />
+        <Route
+        exact
+        path = '/recipedetails'
+        element = {<RecipeDetails />}
+        />
+        <Route
+        exact
+        path = '/login'
+        element = {<Login />}
+        />
+        <Route
+        exact
+        path = '/search'
+        element = {<Search />}
+        />
+        <Route
+        exact
+        path = '/landing'
+        element = {<Landing />}
+        />
+      </Routes>
     </div>
   );
 }
