@@ -2,7 +2,7 @@
 // // import Navbar from "./components/Navbar";
 // // import Register from "./components/Register";
 // // import Home from "./views/Home";
-// // import Recipe from "./components/Recipe";
+// import Recipe from "./components/Recipe";
 // // import AddRecipe from "./components/AddRecipe";
 // // import DeleteRecipe from "./components/DeleteRecipe";
 // // import Category from "./components/Category";
@@ -94,11 +94,13 @@ import React from 'react'
 import Main from './pages/Main'
 
 
+
 function App() {
   return (
     <div>
 
       < Main />
+
 
     </div>
   )

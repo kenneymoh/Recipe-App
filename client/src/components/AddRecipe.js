@@ -41,14 +41,14 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
     }
   };
   return (
-    <div>
+    <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 pt-50">
       {addedRecipe ? (
         <div>
-          <h2>{addedRecipe.name}</h2>
+          <h2 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{addedRecipe.name}</h2>
           <p>{addedRecipe.description}</p>
           <img src={addedRecipe.image} alt={addedRecipe.name} />
           <p>Cooking time: {addedRecipe.cookingTime} minutes</p>
-          <button onClick={handleDeleteRecipe}>Delete recipe</button>
+          <button onClick={handleDeleteRecipe} className="text-blue-700 hover:underline dark:text-blue-500">Delete recipe</button>
         </div>
       ) : (
         <div>
@@ -69,7 +69,7 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
             Cooking time (minutes):
             <input type="number" name="cookingTime" value={recipe.cookingTime} onChange={handleChange} />
           </label>
-          <button onClick={handleSubmit}>Add recipe</button>
+          <button onClick={handleSubmit} className="text-blue-700 hover:underline dark:text-blue-500">Add recipe</button>
         </div>
       )}
     </div>

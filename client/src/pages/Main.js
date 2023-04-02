@@ -4,12 +4,16 @@ import Home from './Home.js'
 import Footer from '../components/commons/Footer'
 import Login from '../components/Login'
 import { Routes, Route} from 'react-router-dom'
-// import { NavLink } from 'react-router-dom'
 import Register from '../components/Register'
-// import Landing from '../components/Landing'
 import AddRecipe from '../components/AddRecipe'
 import Recipe from '../components/Recipe'
 import { useState } from 'react'
+import UpdateRecipe from '../components/UpdateRecipe'
+import Category from '../components/Category'
+import AddCategory from '../components/AddCategory'
+import SavedRecipes from '../components/SavedRecipes'
+import RecipeDetails from '../components/RecipeDetails'
+import Search from '../components/Search'
 
 
 function Main() {
@@ -82,11 +86,6 @@ function Main() {
         exact
         path = '/search'
         element = {<Search />}
-        />
-        <Route
-        exact
-        path = '/landing'
-        element = {<Landing />}
         />
       </Routes>
       <Footer/>
