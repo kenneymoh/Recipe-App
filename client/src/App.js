@@ -39,11 +39,11 @@ function App() {
         path = '/addrecipe'
         element = {<AddRecipe />}
         />
-        <Route
+        {/* <Route
         exact
         path = '/delete'
         element = {<DeleteRecipe />}
-        />
+        /> */}
         <Route
         exact
         path = '/category'
