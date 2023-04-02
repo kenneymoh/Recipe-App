@@ -69,11 +69,7 @@ function App() {
       </Routes>
         <Navbar />
       <Routes>
-        <Route
-        exact
-        path = '/home'
-        element = {<Home />}
-        />
+        {/*   */}
         <Route
         exact
         path = '/register'
@@ -114,26 +110,26 @@ function App() {
         path = '/saved'
         element = {<SavedRecipes />}
         />
-        <Route
+        {/* <Route
         exact
         path = '/recipedetails'
         element = {<RecipeDetails />}
-        />
-        <Route
+        /> */}
+        {/* <Route
         exact
         path = '/login'
         element = {<Login />}
-        />
-        <Route
+        /> */}
+        {/* <Route
         exact
         path = '/search'
         element = {<Search />}
         />
-        <Route
-        exact
+        <Route */}
+        {/* exact
         path = '/landing'
         element = {<Landing />}
-        />
+        /> */}
       </Routes>
     </div>
   );
