@@ -260,5 +260,5 @@ function Recipe({ user }) {
       </div>
     </div>
   );
-
+}
 export default Recipe;
