@@ -42,8 +42,9 @@ PostgreSQL database.
 ## API Documentation
 The back-end API documentation is available at /api-docs. You can access it by starting the development server and visiting http://localhost:PORT/api-docs in your browser, where PORT is the port number you set in your environment variables.
 ## Technologies Used
-    -React
-    -rails
+    -React for the front-end
+    -rails for the backend
+    -Tailwind for the css
 ## Contributing
 Contributions to this project are welcome! If you would like to contribute, please follow these steps:
     -Fork this repository
