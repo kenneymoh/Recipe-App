@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<p align="center">
+  <img src="client/public/erd.jpeg" width="350" title="hover text">
+
+</p>
