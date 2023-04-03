@@ -134,7 +134,7 @@ function Recipe({ user }) {
                   <span class="flex-1 ml-3 whitespace-nowrap">Add Recipe</span>
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="/category"
                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -167,7 +167,7 @@ function Recipe({ user }) {
                   </svg>
                   <span class="flex-1 ml-3 whitespace-nowrap">Add Category</span>
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a
                   href="/saved"

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
+  const navigate = useNavigate()
   const [recipe, setRecipe] = useState({
     name: '',
     description: '',
@@ -17,7 +19,7 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(recipe)
-    return
+    // return
     fetch("/recipes", {
       method: 'POST',
       headers: {
@@ -28,6 +30,7 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
       .then(response => response.json())
       .then(data => {
         setAddedRecipe(data);
+        navigate('/recipe')
         // addRecipeCallback(data);
       });
   };
