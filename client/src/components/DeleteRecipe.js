@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 function DeleteRecipe(props) {
   const [message, setMessage] = useState("");
   function handleClick() {
-    fetch(`/api/recipes/${props.recipeId}`, {
+    fetch(`/categories/${props.recipeId}`, {
       method: 'DELETE',
     })
     .then(response => {
