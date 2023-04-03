@@ -11,14 +11,16 @@ function Login ({setUser}) {
     const handlePassword = (e) => {
         setPassword(e.target.value)
     }
-    const handleApi = () => {
+    const handleApi = (e) => {
+        e.preventDefault()
         console.log({ email, password })
-        axios.get('/users', {
+        axios.post('/login', {
             email: email,
             password: password
         })
         .then( result => {
             console.log(result.data)
+            setUser(result.data)
             alert('Success')
             localStorage.setItem('token', result.data.token)
             navigate('/recipe')

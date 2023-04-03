@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function Navbar() {
     const [navbar, setNavbar] = useState(false)
@@ -8,7 +8,7 @@ function Navbar() {
   return (
 
 
-      <nav className="fixed w-full bg-amber-700 shadow">
+      <nav className="fixed w-full bg-amber-700 shadow z-40">
 
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
           <div>
@@ -34,7 +34,7 @@ function Navbar() {
 
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md-space-y-0">
               <li className="text-white hover:text-indigo-200">
-              <NavLink to = '/home' >Home</NavLink>
+              <NavLink to = '/' >Home</NavLink>
               </li>
 
             </ul>
@@ -44,13 +44,13 @@ function Navbar() {
 
           <div className="md:flex md:space-x-4 md:inline-block">
             <div className="px-4 py-1 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
-              {/* <NavLink to = '/register'>Register</NavLink> */}
-              <a href='/register' alt='' className='register'>
-              <span class="flex-1 ml-3 whitespace-nowrap">Register</span>
-              </a>
+              <Link to = '/register'>Register</Link>
+              {/* <a href='/register' alt='' className='register'> */}
+              {/* <span class="flex-1 ml-3 whitespace-nowrap">Register</span> */}
+              {/* </a> */}
             </div>
             <div className="px-4 py-1 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
-              <NavLink to = '/login'>Login</NavLink>
+              <Link to = '/login'>Login</Link>
             </div>
           </div>
         </div>

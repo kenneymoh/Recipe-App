@@ -24,18 +24,18 @@ function Main() {
       <Routes>
       <Route
         exact
-        path = '/home'
+        path = '/'
         element = {<Home />}
         />
         <Route
         exact
         path = '/register'
-        element = {<Register />}
+        element = {<Register setUser={setUser} />}
         />
         <Route
         exact
         path = '/login'
-        element = {<Login />}
+        element = {<Login setUser={setUser} />}
         />
         {/* <Route
         exact

@@ -16,6 +16,8 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(recipe)
+    return
     fetch("/recipes", {
       method: 'POST',
       headers: {

@@ -47,7 +47,7 @@ function DeleteRecipe({ user }) {
           setRecipes(recipes.filter(recipe => recipe.id !== recipeId));
         })
         .catch(error => console.error(error));
-        window.location.reload();
+        // window.location.reload();
     }
   };
   function handleSaveRecipe(id) {

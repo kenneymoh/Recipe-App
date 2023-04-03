@@ -6,9 +6,9 @@ import Navbar from '../components/commons/Navbar'
 
 function Home() {
   return (
-    <div>
+    <div className='z-0'>
       <Navbar/>
-    <div className='m-0 p-0 font-sans'>
+    <div className='m-0 p-0 font-sans z-1'>
       <div className='w-full h-screen'>
         <div className='main w-full h-full object-cover'>
             <video src={projo} autoPlay loop muted style={{ width: '100%', minHeight: '100px'}}/>

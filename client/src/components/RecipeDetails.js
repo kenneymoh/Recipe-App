@@ -5,21 +5,23 @@ function RecipeDetails() {
     const {recipeId} = useParams()
     const [oneRecipe, setRecipe] = useState([])
     useEffect(() => {
-        fetch(`/categories/${recipeId}`)
+        fetch(`/recipes/${recipeId}`)
         .then(response => response.json())
         .then(data => setRecipe(data))
     }, [])
+
+    const { name, image, cooking_time, description } = oneRecipe;
     
   return (
     <div>
-        {oneRecipe.map((rec) => 
+        
             <div>
-                <h1>{rec.name}</h1>
-                <p>{rec.image}</p>
-                <p>{rec.cooking_time}</p>
-                <p>{rec.description}</p>
+                <h1>{name}</h1>
+                <img src={image} />
+                <p>{cooking_time}</p>
+                <p>{description}</p>
             </div>
-        )}
+        
     </div>
   )
 }
