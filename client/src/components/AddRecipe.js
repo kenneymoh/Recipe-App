@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+// import {  } from 'react-router-dom';
 const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
   const navigate = useNavigate()
   const [recipe, setRecipe] = useState({
@@ -56,27 +57,43 @@ const AddRecipe = ({ user, addRecipeCallback, deleteRecipeCallback }) => {
           <button onClick={handleDeleteRecipe} className="text-blue-700 hover:underline dark:text-blue-500">Delete recipe</button>
         </div>
       ) : (
-        <div>
-          <h2>Add a new recipe</h2>
+
+    <div className="container mt-5 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-100 dark:border-gray-700">
+      <div className="row">
+        <div className="col-sm-12 col-lg-6 offset-lg-3">
+          <h1 className="font-weight-normal mb-5">
+            Add a new recipe to our awesome recipe collection.
+          </h1>
+          <div className="form-group">
           <label>
-            Name:
+            Recipe Name:
             <input type="text" name="name" value={recipe.name} onChange={handleChange} />
           </label>
+          </div>
+
+          <div className="form-group">
           <label>
             Description:
             <textarea name="description" value={recipe.description} onChange={handleChange} />
           </label>
+          </div>
+
           <label>
             Image:
             <input type="text" name="image" value={recipe.image} onChange={handleChange} />
           </label>
+
           <label>
             Cooking time (minutes):
             <input type="number" name="cookingTime" value={recipe.cookingTime} onChange={handleChange} />
           </label>
+
           <button onClick={handleSubmit} className="text-blue-700 hover:underline dark:text-blue-500">Add recipe</button>
+          <Link to="/recipe" className="btn btn-link mt-3"> Back to recipes </Link>
         </div>
-      )}
+      </div>
+      </div>
+        )}
     </div>
   );
 };
