@@ -36,7 +36,7 @@ function Navbar() {
               <li className="text-white hover:text-indigo-200">
               <NavLink to = '/home' >Home</NavLink>
               </li>
-              
+
             </ul>
            </div>
 
@@ -44,7 +44,10 @@ function Navbar() {
 
           <div className="md:flex md:space-x-4 md:inline-block">
             <div className="px-4 py-1 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
-              <NavLink to = '/register'>Register</NavLink>
+              {/* <NavLink to = '/register'>Register</NavLink> */}
+              <a href='/register' alt='' className='register'>
+              <span class="flex-1 ml-3 whitespace-nowrap">Register</span>
+              </a>
             </div>
             <div className="px-4 py-1 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100">
               <NavLink to = '/login'>Login</NavLink>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/commons/Navbar'
+// import Navbar from '../components/commons/Navbar'
 import Home from './Home.js'
 import Footer from '../components/commons/Footer'
 import Login from '../components/Login'
@@ -20,7 +20,7 @@ function Main() {
   const [user, setUser] = useState({})
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Routes>
       <Route
         exact
@@ -37,11 +37,11 @@ function Main() {
         path = '/login'
         element = {<Login />}
         />
-        <Route
+        {/* <Route
         exact
-        path = '/addcategory'
+        path = '/addrecipe'
         element = {<AddRecipe user={user} />}
-        />
+        /> */}
         <Route
         exact
         path = '/recipe'

@@ -1,10 +1,13 @@
 import React from 'react'
 import projo from '../assets/projo.mp4'
+import Navbar from '../components/commons/Navbar'
 
 
 
 function Home() {
   return (
+    <div>
+      <Navbar/>
     <div className='m-0 p-0 font-sans'>
       <div className='w-full h-screen'>
         <div className='main w-full h-full object-cover'>
@@ -15,6 +18,7 @@ function Home() {
             </div>
             </div>
       </div>
+    </div>
     </div>
   )
 }
